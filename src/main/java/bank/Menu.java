@@ -1,6 +1,5 @@
 package bank;
 
-import java.net.Authenticator;
 import java.util.Scanner;
 
 import javax.security.auth.login.LoginException;
@@ -16,9 +15,9 @@ public class Menu {
     Menu menu = new Menu();
     menu.scanner = new Scanner(System.in);
     Customer customer = menu.authenticateUser();
-    if(customer != null){
+    if (customer != null) {
       Accounts account = DataSource.getAccounts(customer.getAccountID());
-      menu.showMenu(customer,account);
+      menu.showMenu(customer, account);
     }
 
     menu.scanner.close();
@@ -38,53 +37,52 @@ public class Menu {
     return customer;
   }
 
-
-  private void showMenu(Customer customer, Accounts accounts){
+  private void showMenu(Customer customer, Accounts accounts) {
     int selection = 0;
-    while(selection !=4 && customer.isAuthenticated()){
+    while (selection != 4 && customer.isAuthenticated()) {
       System.out.println("=========");
       System.out.println("please select one of the following option");
-     System.out.println("1.Deposite");
-     System.out.println("2.Withdraw");
-     System.out.println("3.Checkbalance");
-     System.out.println("4.exit");
-     System.out.println("=========");
+      System.out.println("1.Deposite");
+      System.out.println("2.Withdraw");
+      System.out.println("3.Checkbalance");
+      System.out.println("4.exit");
+      System.out.println("=========");
 
-     selection = scanner.nextInt();
-     double amount;
-     switch(selection){
-            case 1:
-            System.out.println("how much ulike to deposite");
-            amount = scanner.nextDouble();
-            try{
-              accounts.deposite(amount);
-            }catch(AmountException e){
-              System.out.println(e.getMessage());
-              System.out.println("please try again");
-            }
-            break;
-            case 2:
-            System.out.println("How much would u like to withdraw");
-            amount = scanner.nextDouble();
-            try{
-              accounts.withdraw(amount);
-            }catch(AmountException e){
-              System.out.println(e.getMessage());
-              System.out.println("please try again");
-            }
-            break;
-            case 3:
-            System.out.println("amount"+accounts.getBalance());
-            break;
-            case 4:
-            Autneticator.logout(customer);
-            System.out.println("Thanks");
-            break;
+      selection = scanner.nextInt();
+      double amount;
+      switch (selection) {
+        case 1:
+          System.out.println("how much ulike to deposite");
+          amount = scanner.nextDouble();
+          try {
+            accounts.deposite(amount);
+          } catch (AmountException e) {
+            System.out.println(e.getMessage());
+            System.out.println("please try again");
+          }
+          break;
+        case 2:
+          System.out.println("How much would u like to withdraw");
+          amount = scanner.nextDouble();
+          try {
+            accounts.withdraw(amount);
+          } catch (AmountException e) {
+            System.out.println(e.getMessage());
+            System.out.println("please try again");
+          }
+          break;
+        case 3:
+          System.out.println("amount" + accounts.getBalance());
+          break;
+        case 4:
+          Autneticator.logout(customer);
+          System.out.println("Thanks");
+          break;
 
-            default:
-            System.out.println("invalid option try again");
-            break;
-     }
+        default:
+          System.out.println("invalid option try again");
+          break;
+      }
     }
   }
 

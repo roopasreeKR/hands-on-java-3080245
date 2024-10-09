@@ -6,8 +6,6 @@ import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-import org.sqlite.SQLiteException;
-
 public class DataSource {
 
   public static Connection connect() {
@@ -82,13 +80,13 @@ public class DataSource {
 
   }
 
- /*
-  * public static void main(String args[]) {
-  * Customer customer = getCustomer("ojamblinbx@ycombinator.com");
-  * System.out.println(customer.getName());
-  * Accounts account = getAccounts(10385);
-  * System.out.println(account.getBalance());
-  * }
-  */
+  /*
+   * public static void main(String args[]) {
+   * Customer customer = getCustomer("ojamblinbx@ycombinator.com");
+   * System.out.println(customer.getName());
+   * Accounts account = getAccounts(10385);
+   * System.out.println(account.getBalance());
+   * }
+   */
 
 }
